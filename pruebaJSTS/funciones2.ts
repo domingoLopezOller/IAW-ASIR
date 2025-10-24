@@ -29,3 +29,19 @@ function sumaARRAY(a:number,b:number,c:number,...resto:number[]):number{
     console.log(resto);
     return a+b+c;
 }
+
+interface Persona{
+    nombre:string,
+    edad:number,
+    trabajo?:string
+}
+
+function mediaPersonas():void{
+    let personas:Persona[]=[{edad:40,nombre:"",trabajo:"informático"},{edad:30,nombre:"Angel",trabajo:"Ingeniero Agrónomo"}];
+        console.log(personas.length);   
+        console.log(personas[0].edad+" "+personas[0].nombre);
+        console.log(personas[0]);
+        let edades=personas.reduce((a,b)=>a+b.edad,0);
+        let media=edades/personas.length;
+        console.log(media);
+}
