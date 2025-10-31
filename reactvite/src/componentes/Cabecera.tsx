@@ -1,10 +1,9 @@
 import React from 'react'
-import "./cabecera.css"
 
-function Cabecera() {
+const Cabecera = () => {
   return (
     <div>
-      <h1 className="cabecera"> DOMINGO LÓPEZ OLLER</h1>
+      <h1> CABECERA 1</h1>
     </div>
   )
 }
