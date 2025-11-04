@@ -13,13 +13,29 @@ export const Cabecera3 = () => {
     </>
   )
 }
-
-export const Cabecera4 = ({titulo,subtitulo}:any) => {
+interface ejemplo{
+  titulo:string,
+  subtitulo:string,
+  tercero?:string
+}
+export const Cabecera4 = ({titulo,subtitulo,tercero}:ejemplo) => {
     let variable= "ejemplo";
   return (
     <>
-      <h1> {`hola ${variable}`}</h1>
+      <h1> {titulo}</h1>
       <h2>{subtitulo}</h2>
+      <h3>{tercero}</h3>
+    </>
+  )
+}
+
+export const Cabecera5 = (props:any) => {
+    let variable= "ejemplo";
+  return (
+    <>
+      <h1> {props.titulo}</h1>
+      <h2>{props.subtitulo}</h2>
+
     </>
   )
 }

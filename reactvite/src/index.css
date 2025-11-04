@@ -3,3 +3,13 @@
     margin:0px;
     padding:0px;
 }
+
+table {
+    border:1px green dashed;
+}
+tr{
+    border:1px orange dashed;
+}
+tr td{
+    border:1px blue dashed;
+}
