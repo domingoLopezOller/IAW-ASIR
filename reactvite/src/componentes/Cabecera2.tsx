@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaRegSun } from "react-icons/fa";
+import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 
 export const Cabecera2 = () => {
   return (
@@ -9,7 +11,8 @@ export const Cabecera2 = () => {
 export const Cabecera3 = () => {
   return (
     <>
-      <h1> BUENAS TARDES</h1>
+      <h1> <FaRegSun color='green' fontSize='140' />BUENAS TARDES <AddToHomeScreenIcon color="primary" /></h1>
+      <a href="Http://iescuravalera.es" ><img src="/facebook.png" width='40'/></a>      
     </>
   )
 }
@@ -22,7 +25,7 @@ export const Cabecera4 = ({titulo,subtitulo,tercero}:ejemplo) => {
     let variable= "ejemplo";
   return (
     <>
-      <h1> {titulo}</h1>
+      <h1>{titulo}</h1>
       <h2>{subtitulo}</h2>
       <h3>{tercero}</h3>
     </>

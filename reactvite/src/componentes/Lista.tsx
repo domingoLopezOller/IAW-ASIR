@@ -43,3 +43,11 @@ export const ListarItems3= () => {
     </table>
   )
 }
+
+export const ExtraerInfo= ({valor}:any) => {
+  if(valor=="1") return <ListarItems2/>
+  else if(valor=="2") return <ListarItems3/>
+  else return null;
+}
+
+
