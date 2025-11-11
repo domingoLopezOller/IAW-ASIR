@@ -4,7 +4,8 @@ import './index.css'
 // import Web from './webInstituto/Web.tsx'
 // import Web2 from './webInstituto2/Web2.tsx';
 // import WebTarea from './tareaWeb/WebTarea.tsx';
-import Web2 from './webInstituto2/Web2.tsx';
+// import Web2 from './webInstituto2/Web2.tsx';
+import Web2Data from './webInstituto2/Web2.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -12,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
     {/* <App /> */}
     
     {/* <Web/> */}
-    <Web2/>
+    <Web2Data/>
     {/* <WebTarea/> */}
   </StrictMode>,
 

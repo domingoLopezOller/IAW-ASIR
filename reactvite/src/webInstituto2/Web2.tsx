@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useParams, Outlet } from "react-router-dom";
 import Navigation from '../tareaWeb/componentes/Navbar'
 
 export default function Web2() {
@@ -12,11 +12,13 @@ export default function Web2() {
         <Navigation/>
         <main>
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home/>}>
+              <Route path="/about/:nombre" element={<About/>} />
+            </Route> 
     
-            <Route path="/:nombre" element={<MySkills/>} />
+            <Route path="/usuario/:nombre" element={<MySkills/>} />
             <Route path="/contacto" element={<Contacto/>} />
-            <Route path="/about" element={<About/>} />
+            
             <Route path="*" element={<Nopage/>} />      
             
           </Routes>
@@ -41,12 +43,20 @@ function Nopage() {
 }
 
 function Home() {
-  return <h1>Página inicial de IAW</h1>;
+  return <> 
+    <h1>Página inicial de IAW</h1>;
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab quam quo sed eum officiis, quis animi rerum perferendis repudiandae omnis harum! Porro quidem natus amet sunt dicta autem temporibus.</p>  
+    <Outlet/>
+    </>
 }
 function Contacto() {
   return <h2>Llámenos al 666 66 66 66</h2>;
 }
 
 function About() {
-  return <h3>Página de IAW</h3>;
+  const params = useParams();
+  return <>
+    <h3>INFORMACIÓN SOBRE</h3>;
+    <h4> COSAS DEL AUTOR {params.nombre}</h4>
+  </>
 }
