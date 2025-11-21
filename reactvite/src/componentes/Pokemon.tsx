@@ -47,25 +47,26 @@ export const Pokemon2 = ({ id }: {id:number}) => {
   const [pokemon, setPokemon] = useState<PokemonData | null>();
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then((res) => res.json())
-      .then((data) =>
-        setPokemon({
-          numero: data.id,
-          img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
-          imgJuego: data.sprites.front_default,
-          imgCvg: data.sprites.other.dream_world.front_default,
-          nombre: data.name,
-          experiencia: data.base_experience,
-          hp: data.stats[0].base_stat,
-          ataque: data.stats[1].base_stat,
-          defensa: data.stats[2].base_stat,
-          especial: data.stats[3].base_stat,
-        })
-      );
+    // fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    //   .then((res) => res.json())
+    //   .then((data) =>
+    //     setPokemon({
+    //       numero: data.id,
+    //       img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+    //       imgJuego: data.sprites.front_default,
+    //       imgCvg: data.sprites.other.dream_world.front_default,
+    //       nombre: data.name,
+    //       experiencia: data.base_experience,
+    //       hp: data.stats[0].base_stat,
+    //       ataque: data.stats[1].base_stat,
+    //       defensa: data.stats[2].base_stat,
+    //       especial: data.stats[3].base_stat,
+    //     })
+    //   );
+    fetchData(id).then(setPokemon);
   }, [id]);
 
-  if (!pokemon) return <p>Cargando...</p>;
+  if (!pokemon) return <p>Cargando...</p>; //Aquí podrías poner el gif
 
   return (
     <div>
