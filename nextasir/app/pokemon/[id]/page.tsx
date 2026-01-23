@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 type Pokemon = {
   numero: number;
   img: string;
@@ -24,10 +26,10 @@ async function getPokemon(id: string): Promise<Pokemon> {
     defensa: data.stats[2].base_stat,
   };
 }
-interface PageProps { params: Promise<{ id: string }>}
+interface PageProps { params: Promise<{ id: string }> }
 export default async function Page({ params }: PageProps) {
   const { id } = await params; //Necesita leer el parámetro de entrada
-    const pokemon = await getPokemon(id);
+  const pokemon = await getPokemon(id);
   return (
     <div>
       <h1>{pokemon.nombre}</h1>
@@ -38,3 +40,5 @@ export default async function Page({ params }: PageProps) {
     </div>
   );
 }
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> { const { id } = await params; return { title: `Pokemon ${id}`, }; }

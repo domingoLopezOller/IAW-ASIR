@@ -1,9 +1,16 @@
 "use client";
 
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
-function ErrorFallback({ error }: { error: Error }) {
-  return <p> {error.message}</p>;
+function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+  return (
+    <div>
+      <p>{error.message}</p>
+      <button onClick={resetErrorBoundary}>
+        Reintentar
+      </button>
+    </div>
+  );
 }
 
 export default function LocalErrorBoundary({

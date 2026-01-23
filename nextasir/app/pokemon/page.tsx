@@ -13,7 +13,11 @@ async function getPokemons(): Promise<PokemonList> {
 
   return res.json();
 }
-
+export const metadata = {
+  title: "Página de POKEMON",
+  description: "Página generada desde NEXTJS",
+  icons:{icon:'/pokemonLogo.svg'}
+};
 export default async function PokemonPage() {
   const pokemons = await getPokemons();
 
