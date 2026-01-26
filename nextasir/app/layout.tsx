@@ -1,4 +1,5 @@
 //layout.js
+// import './globals.css'
 import  "bootstrap/dist/css/bootstrap.min.css"
 import AddBootstrap from "./AddBootstrap";
 

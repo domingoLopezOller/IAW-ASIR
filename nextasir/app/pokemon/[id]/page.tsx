@@ -10,7 +10,7 @@ type Pokemon = {
 };
 
 async function getPokemon(id: string): Promise<Pokemon> {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+  const res = await fetch(`https://localhost:3000/api/${id}`, {
     cache: "no-store", // opcional
   });
 
