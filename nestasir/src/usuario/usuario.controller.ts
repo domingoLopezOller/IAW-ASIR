@@ -1,34 +1,53 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UsuarioService } from './usuario.service';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Post, Put } from "@nestjs/common";
+import { UsuarioService } from "./usuario.service";
+import { Usuario } from "./entities/usuario.entity";
+import { CreateUsuarioDto } from "./dto/create-usuario.dto";
 
-@Controller('usuario')
+@Controller("usuario")
 export class UsuarioController {
-  constructor(private readonly usuarioService: UsuarioService) {}
+  constructor(private readonly usuariosService: UsuarioService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto) {
-    return this.usuarioService.create(createUsuarioDto);
+  async create(@Body() usuarioDto: CreateUsuarioDto): Promise<Usuario> {
+    return this.usuariosService.create(usuarioDto);
   }
 
   @Get()
-  findAll() {
-    return this.usuarioService.findAll();
+  async findAll(): Promise<Usuario[]> {
+    return this.usuariosService.findAll()
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usuarioService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<Usuario> {
+      return await this.usuariosService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuarioService.update(+id, updateUsuarioDto);
+  @Put(":id")
+  async update(@Param('id') id: string, @Body() usuarioDto: CreateUsuarioDto): Promise<Usuario> {
+      return await this.usuariosService.update(+id, usuarioDto)
   }
-
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usuarioService.remove(+id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(@Param('id') id: string): Promise<void> {
+      await this.usuariosService.remove(+id);
   }
+
+  @Get('email/:email')
+  async findByEmail(@Param('email') email: string): Promise<Usuario> {
+    const usuario = await this.usuariosService.findByEmail(email);
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con email ${email} no encontrado`);
+    }
+    return usuario;
+  }
+
+  @Put(':id/activate')
+  async activateUser(@Param('id') id: string): Promise<Usuario> {
+      return await this.usuariosService.activateUser(+id);
+  }
+
+  @Put(':id/deactivate')
+  async deactivateUser(@Param('id') id: string): Promise<Usuario> {
+      return await this.usuariosService.deactivateUser(+id);
+}
 }

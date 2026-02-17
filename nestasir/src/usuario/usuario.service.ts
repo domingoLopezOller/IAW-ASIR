@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Usuario } from './entities/usuario.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 
 @Injectable()
 export class UsuarioService {
-  create(createUsuarioDto: CreateUsuarioDto) {
-    return 'This action adds a new usuario';
+  constructor(
+    @InjectRepository(Usuario)
+    private usuarioRepository: Repository<Usuario>,
+  ) {}
+  async create(usuarioDto: CreateUsuarioDto): Promise<Usuario> {
+    const usuario = this.usuarioRepository.create(usuarioDto);
+    return this.usuarioRepository.save(usuario);
   }
-
-  findAll() {
-    return `This action returns all usuario`;
+  async findAll(): Promise<Usuario[]> {
+    return this.usuarioRepository.find();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  async findOne(id: number): Promise<Usuario> {
+    const usuario = await this.usuarioRepository.findOne({ where: { id } });
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    }
+    return usuario;
   }
-
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: number, usuarioDto: CreateUsuarioDto): Promise<Usuario> {
+    const usuario = await this.findOne(id);
+    this.usuarioRepository.merge(usuario, usuarioDto);
+    return this.usuarioRepository.save(usuario);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+  async remove(id: number): Promise<void> {
+    const usuario = await this.findOne(id);
+    await this.usuarioRepository.remove(usuario);
+  }
+  async findByEmail(email: string): Promise<Usuario | null> {
+    return this.usuarioRepository.findOne({ where: { email } });
+  }
+  async activateUser(id: number): Promise<Usuario> {
+    const usuario = await this.findOne(id);
+    usuario.activo = true;
+    return this.usuarioRepository.save(usuario);
+  }
+  async deactivateUser(id: number): Promise<Usuario> {
+    const usuario = await this.findOne(id);
+    usuario.activo = false;
+    return this.usuarioRepository.save(usuario);
   }
 }

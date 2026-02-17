@@ -7,6 +7,7 @@ import { ProductsService } from './products/products.service';
 import { PinturaModule } from './pintura/pintura.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
+import { LibreriaModule } from './libreria/libreria.module';
 
 
 
@@ -20,7 +21,7 @@ import { UsuarioModule } from './usuario/usuario.module';
       database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize:true
-}), UsuarioModule],
+}), UsuarioModule, LibreriaModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
