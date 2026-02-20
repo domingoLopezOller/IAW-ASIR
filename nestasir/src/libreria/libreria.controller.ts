@@ -22,7 +22,15 @@ export class LibreriaController {
   findOne(@Param('id') id: string) {
     return this.libreriaService.findOne(+id);
   }
-
+  @Get(':id/author')
+  findbyIDAuthor(@Param('id') id: string){
+    return this.libreriaService.findByAuthor(+id);
+  }
+  @Get('quantity/:id')
+  findbyQuantity(@Param('id') id: string){
+    return this.libreriaService.findByQuantity(+id);
+  }
+  
   @Put(':id')
   update(@Param('id') id: string, @Body() createLibreriaDto: CreateLibreriaDto) {
     return this.libreriaService.update(+id, createLibreriaDto);
