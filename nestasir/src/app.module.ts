@@ -8,6 +8,9 @@ import { PinturaModule } from './pintura/pintura.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
 import { LibreriaModule } from './libreria/libreria.module';
+import { MensajesModule } from './mensajes/mensajes.module';
+import { R11Module } from './r11/r11.module';
+import { RnnModule } from './rnn/rnn.module';
 
 
 
@@ -21,7 +24,7 @@ import { LibreriaModule } from './libreria/libreria.module';
       database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize:true
-}), UsuarioModule, LibreriaModule],
+}), UsuarioModule, LibreriaModule, MensajesModule, R11Module, RnnModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
