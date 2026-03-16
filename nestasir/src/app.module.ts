@@ -12,6 +12,7 @@ import { MensajesModule } from './mensajes/mensajes.module';
 import { R11Module } from './r11/r11.module';
 import { RnnModule } from './rnn/rnn.module';
 import { RecambiosModule } from './recambios/recambios.module';
+import { BibliotecaModule } from './biblioteca/biblioteca.module';
 
 
 
@@ -25,7 +26,7 @@ import { RecambiosModule } from './recambios/recambios.module';
       database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize:true
-}), UsuarioModule, LibreriaModule, MensajesModule, R11Module, RnnModule, RecambiosModule],
+}), UsuarioModule, LibreriaModule, MensajesModule, R11Module, RnnModule, RecambiosModule, BibliotecaModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
