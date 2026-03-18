@@ -1,4 +1,5 @@
 'use client'
+import LibroForm from "@/app/componentes/LibroForm"
 import { useEffect, useState } from "react"
 
 async function getLibros() {
@@ -14,11 +15,15 @@ async function getAutores() {
 async function addLibro(formData:any) {
   const res = await fetch("http://localhost:4000/libro", {
     method: "POST",
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
     body: JSON.stringify({
       titulo: formData.get("titulo"),
       descripcion: formData.get("descripcion"),
       portadaUrl: formData.get("portadaUrl"),
-      autor: Number(formData.get("autorId")),
+      autor: Number(formData.get("autor")),
+      // autor: { id: Number(formData.get("autor")) },
     }),
   })
   if (!res.ok) throw new Error("Failed to add libro")
@@ -72,5 +77,6 @@ const handleAddLibro = async (formData:any) => {
         </ul>
       </div>
     </div>
+    
   )
 }

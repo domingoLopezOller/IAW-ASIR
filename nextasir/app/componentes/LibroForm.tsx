@@ -1,16 +1,19 @@
-export default function LibroForm({ onSubmit, autores }) {
+'use client'
+import { useState } from "react"
+
+export default function LibroForm({ onSubmit, autores }:any) {
   const [titulo, setTitulo] = useState("")
   const [descripcion, setDescripcion] = useState("")
   const [portadaUrl, setPortadaUrl] = useState("")
   const [autorId, setAutorId] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append("titulo", titulo)
     formData.append("descripcion", descripcion)
     formData.append("portadaUrl", portadaUrl)
-    formData.append("autorId", autorId)
+    formData.append("autor", autorId)
     onSubmit(formData)
     setTitulo("")
     setDescripcion("")
@@ -58,7 +61,7 @@ export default function LibroForm({ onSubmit, autores }) {
           required
         >
           <option value="">Seleccione un autor</option>
-          {autores.map((autor) => (
+          {autores.map((autor:any) => (
             <option key={autor.id} value={autor.id}>
               {autor.nombre}
             </option>

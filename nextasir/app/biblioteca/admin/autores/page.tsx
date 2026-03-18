@@ -11,7 +11,7 @@ export default async function AdminAutores() {
 
   async function addAutor(formData:any) {
     "use server"
-    const res = await fetch("http://localhost:5000/autor", {
+    const res = await fetch("http://localhost:4000/autor", {
       method: "POST",
       body: JSON.stringify({
         nombre: formData.get("nombre"),
