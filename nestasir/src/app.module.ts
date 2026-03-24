@@ -8,11 +8,12 @@ import { PinturaModule } from './pintura/pintura.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
 import { LibreriaModule } from './libreria/libreria.module';
-import { MensajesModule } from './mensajes/mensajes.module';
 import { R11Module } from './r11/r11.module';
 import { RnnModule } from './rnn/rnn.module';
 import { RecambiosModule } from './recambios/recambios.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -26,7 +27,7 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
       database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize:true
-}), UsuarioModule, LibreriaModule, MensajesModule, R11Module, RnnModule, RecambiosModule, BibliotecaModule],
+}), UsuarioModule, LibreriaModule, R11Module, RnnModule, RecambiosModule, BibliotecaModule, AuthModule, UserModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
