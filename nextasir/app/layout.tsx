@@ -1,7 +1,8 @@
 //layout.js
-// import './globals.css'
+import "./globals.css"
 import  "bootstrap/dist/css/bootstrap.min.css"
 import AddBootstrap from "./AddBootstrap";
+import Navbar2 from "./componentes/Navbar2";
 
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body >
         <AddBootstrap/>
+        <Navbar2/>
         {children}</body>
     </html>
   );
